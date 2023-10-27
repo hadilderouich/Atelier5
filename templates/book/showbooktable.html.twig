@@ -1,7 +1,11 @@
 {{form_start(f)}}
 {{form_label(f.ref)}}
 {{form_widget(f.ref)}}
+<hr>
+
 {{form_end(f)}}
+<hr>
+
 <table border="3">
 <tr>
 <td>ref</td>
@@ -31,22 +35,22 @@
 {% endfor %}
 </table>
 <hr>
-<hr>
 <button><a href="{{path('addbook')}}">Ajouter par referance</a></button>
-<h1>Liste des Livres</h1>
+<hr>
 
 <p>Nombre de Livres Published : {{Published}}</p>
 <p>Nombre de Livres unPublished : {{unPublished}}</p>
 
 <hr>
- 
     <p>Total Cat Science Fiction : {{ totalQuantity }}</p>
 <hr>
 
-{#<h1>List Books Published Between {{ startDate|date("Y-m-d") }} and {{ endDate|date("Y-m-d") }}</h1>
+<h1>List Books Published Between {{ startDate|date("Y-m-d") }} and {{ endDate|date("Y-m-d") }}</h1>
 
     <ul>
         {% for book in books %}
             <li>{{ book.title }} - {{ book.publicationDate|date("Y-m-d") }}</li>
         {% endfor %}
-    </ul>#}
+    </ul>
+
+    <hr>

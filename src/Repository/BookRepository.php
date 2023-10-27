@@ -40,12 +40,13 @@ class BookRepository extends ServiceEntityRepository
     //livres publiés avant l’année 2023 dont l’auteur a plus de 35 livres
     public function findBooks() {
         return $this->createQueryBuilder('b')
-        ->leftJoin('b.author', 'author')
-        ->andWhere('b.publicationDate < :date') 
-        ->andWhere('author.nbbook > 35')
-        ->setParameter('date', new \DateTime('2023-01-01'))
-        ->getQuery()
-        ->getResult();
+            ->leftJoin('b.author', 'author')
+            ->andWhere('b.publicationDate < :date')
+            ->andWhere('author.nbbook > 35')
+            ->setParameter('date', new \DateTime('2023-01-01'))
+            ->orderBy('author.username', 'ASC')
+            ->getQuery()
+            ->getResult();
             }
             //catégorie des livres de l’auteur “William Shakespear” à “Romance”
     public function updateBooks($authorName, $newCategory)

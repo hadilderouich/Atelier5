@@ -38,22 +38,18 @@ class BookController extends AbstractController
     public function showbooktable(BookRepository $x ,Request $req): Response
     {
         
-        $authorName = 'willyamshekspiir';
-        $newCategory = 'Romance';
-        $x->updateBooks($authorName, $newCategory);
-
         $Published = $x->PublishedBooks();
         $unPublished = $x->UnpublishedBooks();
 
         $total= $x->getScienceFictionBooks();
 
-       $startDate = new \DateTime('2014-01-01');
+        $startDate = new \DateTime('2014-01-01');
         $endDate = new \DateTime('2018-12-31');
         $between = $x->BetweenDates($startDate, $endDate);
 
-        $tri=$x->trie();   
+        //$booktrié=$x->trie();   
 
-        $find=$x->findBooks();
+      /*  $find=$x->findBooks();*/
         $form=$this->createForm(RechercheType::class);
         $form->handleRequest($req);
         if($form->isSubmitted()){
@@ -62,26 +58,40 @@ class BookController extends AbstractController
             return $this->renderForm('book/showbooktable.html.twig', [
                 'book'=> $Ref,
                 'f'=> $form,
-                'book'=> $tri,
-               'book'=>$find,
+
+               // 'book'=> $tri,
+                /*'book'=>$find,
                 'Published'=>$Published,
                 'unPublished'=>$unPublished,
-                'totalQuantity'=>$total,
+                'totalQuantity'=>$total,*/
                 'startDate' => $startDate,
-                 'endDate' => $endDate,
-                 'books'=>$between
-                
+                'endDate' => $endDate,
+                'books'=>$between,
+                'Published'=>$Published ,
+                'unPublished'=>$unPublished,
+                'totalQuantity'=>$total,
 
             ]);
-
         }
+       // $booktrié=$x->trie();   
+
+        $find=$x->findBooks();
+
+        $authorName = 'willyamshekspiir';
+        $newCategory = 'Romance';
+        $x->updateBooks($authorName, $newCategory);
+
+        
+
         return $this->renderForm('book/showbooktable.html.twig', [
+            'f'=> $form,
+          //  'book'=> $booktrié,
+            'book'=>$find,
             'Published'=>$Published ,
             'unPublished'=>$unPublished,
-            'f'=> $form,
-            'book'=> $tri,
-            'book'=>$find,
+         
             'totalQuantity'=>$total,
+           // 'book'=>$find,
             'books'=>$between,
             'startDate' => $startDate,
             'endDate' => $endDate,
