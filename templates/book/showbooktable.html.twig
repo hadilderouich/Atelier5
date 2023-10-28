@@ -35,7 +35,7 @@
 {% endfor %}
 </table>
 <hr>
-<button><a href="{{path('addbook')}}">Ajouter par referance</a></button>
+<button><a href="{{path('addbook')}}"><h4>Ajouter un Book</h4></a></button>
 <hr>
 
 <p>Nombre de Livres Published : {{Published}}</p>
@@ -45,11 +45,11 @@
     <p>Total Cat Science Fiction : {{ totalQuantity }}</p>
 <hr>
 
-<h1>List Books Published Between {{ startDate|date("Y-m-d") }} and {{ endDate|date("Y-m-d") }}</h1>
+<h3>List Books Published entre {{ startDate|date("Y-m-d") }} et {{ endDate|date("Y-m-d") }}</h3>
 
     <ul>
         {% for book in books %}
-            <li>{{ book.title }} - {{ book.publicationDate|date("Y-m-d") }}</li>
+          {{ book.title }} - {{ book.publicationDate|date("Y-m-d") }}<br>
         {% endfor %}
     </ul>
 
